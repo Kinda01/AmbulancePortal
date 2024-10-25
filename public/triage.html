@@ -1,0 +1,782 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Medical Form</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .priority-red {
+            border: 2px solid red;
+        }
+
+        .priority-orange {
+            border: 2px solid orange;
+        }
+
+        .priority-yellow {
+            border: 2px solid yellow;
+        }
+
+        .priority-green {
+            border: 2px solid green;
+        }
+
+        .priority-blue {
+            border: 2px solid blue;
+        }
+        
+        .priority-black {
+            border: 2px solid black;
+        }
+
+        .no-border {
+            border: none;
+        }
+
+        .ess-row {
+            text-align: center;
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        .sub-column {
+            width: 50%;
+            vertical-align: top;
+        }
+
+        .square {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            border-style: solid; /* Adjust border thickness as needed */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Combined Medical Form</h2>
+
+<table>
+    <tr>
+        <th>Primary Survey (A, B, C, D, E)</th>
+        <th>No Free Airway (Red)</th>
+        <th>Threatened Airway (Orange)</th>
+        <th>Threatened Airway (Yellow)</th>
+        <th>Free Airway (Green)</th>
+    </tr>
+    <tr>
+        <td class="no-border">
+            <label for="airway">A (Airway):</label> 
+            <input type="checkbox" id="airway" name="airway" title="Select if Airway is Free"> Free
+            <input type="checkbox" id="airway_no" name="airway_no"> No
+            <input type="checkbox" id="airway_yes" name="airway_yes"> Yes
+            <br>
+            
+            <label for="airway">A (Airway):</label>
+<input type="checkbox" id="airway_no" name="airway" value="no">
+<label for="airway_no">No</label>
+<input type="checkbox" id="airway_yes" name="airway" value="yes">
+<label for="airway_yes">Yes</label>
+<br>
+
+<label for="breathing">B (Breathing):</label> 
+<input type="checkbox" id="breathing" name="breathing" value="impaired">
+<label for="breathing">Impaired</label>
+<input type="checkbox" id="breathing_no" name="breathing" value="no">
+<label for="breathing_no">No</label>
+<input type="checkbox" id="breathing_yes" name="breathing" value="yes">
+<label for="breathing_yes">Yes</label>
+<br>
+
+            
+<label for="disability">D (Disability):</label>
+<input type="checkbox" id="disability" name="disability" value="disability">
+<label for="disability">Disability Status</label>
+<br>
+<input type="radio" id="disability_no" name="disability_status" value="no">
+<label for="disability_no">No</label>
+<input type="radio" id="disability_yes" name="disability_status" value="yes">
+<label for="disability_yes">Yes</label>
+<br>
+
+<label for="exposure">E (Exposure):</label>
+<input type="checkbox" id="exposure" name="exposure" value="abnormal_findings">
+<label for="exposure">No abnormal findings</label>
+<br>
+<input type="radio" id="exposure_no" name="exposure_status" value="no">
+<label for="exposure_no">No</label>
+<input type="radio" id="exposure_yes" name="exposure_status" value="yes">
+<label for="exposure_yes">Yes</label>
+<br>
+
+        
+        <td class="priority-red">
+            <label for="spo2_red">SpO2:</label>
+            <input type="text" id="spo2_red" name="spo2_red" value="95%">
+            <br>
+            <label for="af_red">AF:</label>
+            <input type="text" id="af_red" name="af_red" value="18">
+            <br>
+            <label for="pulse_red">Pulse:</label>
+            <input type="text" id="pulse_red" name="pulse_red" value="80">
+            <br>
+            <label for="sbt_red">SBT:</label>
+            <input type="text" id="sbt_red" name="sbt_red">
+            <br>
+            <label for="rls_red">RLS:</label>
+            <select id="rls_red" name="rls_red">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br>
+            <label for="gcs_red">GCS:</label>
+            <select id="gcs_red" name="gcs_red">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <label for="seizure_red">Ongoing Seizure:</label>
+            <input type="checkbox" id="seizure_red" name="seizure_red">
+            <br>
+            <label for="temp_red">Temp:</label>
+            <input type="text" id="temp_red" name="temp_red">
+        </td>
+        
+        <td class="priority-orange">
+            <label for="spo2_orange">SpO2:</label>
+            <input type="text" id="spo2_orange" name="spo2_orange" value="95%">
+            <br>
+            <label for="af_orange">AF:</label>
+            <input type="text" id="af_orange" name="af_orange" value="18">
+            <br>
+            <label for="pulse_orange">Pulse:</label>
+            <input type="text" id="pulse_orange" name="pulse_orange" value="80">
+            <br>
+            <label for="rls_orange">RLS:</label>
+            <select id="rls_orange" name="rls_orange">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br>
+            <label for="gcs_orange">GCS:</label>
+            <select id="gcs_orange" name="gcs_orange">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <label for="temp_orange">Temp:</label>
+            <input type="text" id="temp_orange" name="temp_orange">
+        </td>
+
+        <td class="priority-yellow">
+            <label for="spo2_yellow">SpO2:</label>
+            <input type="text" id="spo2_yellow" name="spo2_yellow" value="95%">
+            <br>
+            <label for="af_yellow">AF:</label>
+            <input type="text" id="af_yellow" name="af_yellow" value="18">
+            <br>
+            <label for="pulse_yellow">Pulse:</label>
+            <input type="text" id="pulse_yellow" name="pulse_yellow" value="80">
+            <br>
+            <label for="rls_yellow">RLS:</label>
+            <select id="rls_yellow" name="rls_yellow">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br>
+            <label for="gcs_yellow">GCS:</label>
+            <select id="gcs_yellow" name="gcs_yellow">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <label for="temp_yellow">Temp:</label>
+            <input type="text" id="temp_yellow" name="temp_yellow">
+        </td>
+
+        <td class="priority-green">
+            <label for="spo2_green">SpO2:</label>
+            <input type="text" id="spo2_green" name="spo2_green" value="95%">
+            <br>
+            <label for="af_green">AF:</label>
+            <input type="text" id="af_green" name="af_green" value="18">
+            <br>
+            <label for="pulse_green">Pulse:</label>
+            <input type="text" id="pulse_green" name="pulse_green" value="80">
+            <br>
+            <label for="rls_green">RLS:</label>
+            <select id="rls_green" name="rls_green">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br>
+            <label for="gcs_green">GCS:</label>
+            <select id="gcs_green" name="gcs_green">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <label for="temp_green">Temp:</label>
+            <input type="text" id="temp_green" name="temp_green">
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+    <tr class="ess-row">
+        <td colspan="5">
+            <label for="ess_algorithm">ESS Algorithm:</label><br>
+            <label for="ess_score">ESS score:</label> <input type="text" id="ess_score" name="ess_score" value="12"><br
+            <label for="stroke">Suspected stroke:</label>
+            <input type="checkbox" id="stroke" name="stroke" title="Select if stroke is suspected">
+            <br>
+            <select id="rls_green" name="rls_green">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <br>
+            <label for="gcs_green">GCS:</label>
+            <select id="gcs_green" name="gcs_green">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <label for="temp_green">Temp:</label>
+            <input type="text" id="temp_green" name="temp_green">
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th colspan="2">Medical History</th>
+    </tr>
+    <tr>
+        <td>
+            <label for="allergies">Allergies:</label>
+            <input type="text" id="allergies" name="allergies">
+        </td>
+        <td>
+            <label for="current_medications">Current Medications:</label>
+            <input type="text" id="current_medications" name="current_medications">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="previous_conditions">Previous Conditions:</label>
+            <input type="text" id="previous_conditions" name="previous_conditions">
+        </td>
+        <td>
+            <label for="emergency_contact">Emergency Contact:</label>
+            <input type="text" id="emergency_contact" name="emergency_contact">
+        </td>
+    </tr>
+</table>
+
+<h3>Signature</h3>
+<label for="signature">Patient Signature:</label>
+<input type="text" id="signature" name="signature">
+<br>
+<label for="date">Date:</label>
+<input type="date" id="date" name="date">
+<br><br>
+<button type="submit">Submit</button>
+
+</body>
+</html>
+                    </td>
+    </tr>
+</table>
+
+<title>Colored Boxes with Outlines</title>
+    <style>
+        /* Square Box Styling */
+        .square {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            margin: 5px;
+            border-width: 5px; /* Increased border width for better visibility */
+            border-style: solid;
+            background-color: transparent; /* Set background to transparent */
+        }
+
+        /* Adding matching border colors */
+        .square-red {
+            border-color: red;
+        }
+
+        .square-orange {
+            border-color: orange;
+        }
+
+        .square-yellow {
+            border-color: yellow;
+        }
+
+        .square-green {
+            border-color: green;
+        }
+
+        .square-blue {
+            border-color: blue;
+        }
+
+        .square-black {
+            border-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="square square-red"></div> <!-- Red Square -->
+    <div class="square square-orange"></div> <!-- Orange Square -->
+    <div class="square square-yellow"></div> <!-- Yellow Square -->
+    <div class="square square-green"></div> <!-- Green Square -->
+    <div class="square square-blue"></div> <!-- Blue Square -->
+    <div class="square square-black"></div> <!-- Black Square -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Patient Information</title>
+    <style>
+        /* General Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Button Styles */
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            background-color: green;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .status-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .status-normal {
+            background-color: green;
+        }
+        .status-warning {
+            background-color: yellow;
+            color: black;
+        }
+        .status-critical {
+            background-color: red;
+        }
+
+        /* Hidden sections */
+        .tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Styles for Measures Taken Section */
+        .measures-taken {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        // Function to show the selected section and hide others
+        function toggleSection(sectionId) {
+            const sections = document.querySelectorAll('.tab-content');
+            sections.forEach(section => section.style.display = 'none');
+            const selectedSection = document.getElementById(sectionId);
+            selectedSection.style.display = 'block';
+        }
+
+        function updateStatus() {
+            // Status logic for each parameter
+            const statusConditions = {
+                pulse: { value: 60, low: 60, high: 100 },
+                respRate: { value: 18, low: 12, high: 20 },
+                temp: { value: 36.7, low: 37.5, high: 39 },
+                sao2: { value: 98, low: 90 },
+                bp: { systolic: 160, high: 140 }
+            };
+
+            // Pulse Status
+            const pulseButton = document.getElementById("pulse-status");
+            if (statusConditions.pulse.value < statusConditions.pulse.low || statusConditions.pulse.value > statusConditions.pulse.high) {
+                pulseButton.className = "status-button status-critical";
+                pulseButton.textContent = "Status: Critical";
+            } else {
+                pulseButton.className = "status-button status-normal";
+                pulseButton.textContent = "Status: Normal";
+            }
+
+            // Respiratory Rate Status
+            const respRateButton = document.getElementById("resp-rate-status");
+            if (statusConditions.respRate.value < statusConditions.respRate.low || statusConditions.respRate.value > statusConditions.respRate.high) {
+                respRateButton.className = "status-button status-critical";
+                respRateButton.textContent = "Status: Critical";
+            } else {
+                respRateButton.className = "status-button status-normal";
+                respRateButton.textContent = "Status: Normal";
+            }
+
+            // Temperature Status
+            const tempButton = document.getElementById("temp-status");
+            if (statusConditions.temp.value >= statusConditions.temp.high) {
+                tempButton.className = "status-button status-critical";
+                tempButton.textContent = "Status: Critical";
+            } else if (statusConditions.temp.value >= statusConditions.temp.low) {
+                tempButton.className = "status-button status-warning";
+                tempButton.textContent = "Status: Warning";
+            } else {
+                tempButton.className = "status-button status-normal";
+                tempButton.textContent = "Status: Normal";
+            }
+
+            // SaO2 Status
+            const sao2Button = document.getElementById("sao2-status");
+            if (statusConditions.sao2.value < statusConditions.sao2.low) {
+                sao2Button.className = "status-button status-critical";
+                sao2Button.textContent = "Status: Critical";
+            } else {
+                sao2Button.className = "status-button status-normal";
+                sao2Button.textContent = "Status: Normal";
+            }
+
+            // Blood Pressure Status
+            const bpButton = document.getElementById("bp-status");
+            if (statusConditions.bp.systolic >= statusConditions.bp.high) {
+                bpButton.className = "status-button status-critical";
+                bpButton.textContent = "Status: Critical";
+            } else {
+                bpButton.className = "status-button status-normal";
+                bpButton.textContent = "Status: Normal";
+            }
+        }
+
+        function toggleMeasuresSection() {
+            const measuresSection = document.getElementById('measuresTakenSection');
+            measuresSection.style.display = measuresSection.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+
+<h1>Patient Information</h1>
+
+<!-- Buttons to display different sections -->
+<button class="tab-button" onclick="toggleSection('vitalSignsSection')">Vital Signs</button>
+<button class="tab-button" onclick="toggleSection('secondarySurveySection')">Secondary Survey</button>
+<button class="tab-button" onclick="toggleSection('medicalHistorySection')">Medical History</button>
+<button class="tab-button" onclick="toggleMeasuresSection()">Measures Taken</button>
+
+<!-- Vital Signs Section -->
+<div id="vitalSignsSection" class="tab-content">
+    <h2>Vital Signs Table</h2>
+    <table id="vitalSignsTable">
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+            <th>Identifier</th>
+            <th>Timestamp</th>
+            <th>Status</th> <!-- Status Column for each parameter -->
+        </tr>
+        <tr>
+            <td>Pulse</td>
+            <td id="pulse-value">60 beats/minute</td>
+            <td>RKE01</td>
+            <td>19:52</td>
+            <td><button id="pulse-status" class="status-button">Status: Normal</button></td>
+        </tr>
+        <tr>
+            <td>Respiratory rate</td>
+            <td id="resp-rate-value">18 breaths/minute</td>
+            <td>RKE01</td>
+            <td>19:51</td>
+            <td><button id="resp-rate-status" class="status-button">Status: Normal</button></td>
+        </tr>
+        <tr>
+            <td>RLS</td>
+            <td id="rls-value">1</td>
+            <td>RKE01</td>
+            <td>19:51</td>
+            <td><button id="rls-status" class="status-button">Status: Normal</button></td>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td id="temp-value">36.7 °C</td>
+            <td>RKE01</td>
+            <td>19:51</td>
+            <td><button id="temp-status" class="status-button">Status: Normal</button></td>
+        </tr>
+        <tr>
+            <td>SaO2</td>
+            <td id="sao2-value">98%</td>
+            <td>RKE01</td>
+            <td>19:51</td>
+            <td><button id="sao2-status" class="status-button">Status: Normal</button></td>
+        </tr>
+        <tr>
+            <td>Blood pressure</td>
+            <td id="bp-value">160 mm Hg Syst / 65 mm Hg Diast</td>
+            <td>RKE01</td>
+            <td>19:52</td>
+            <td><button id="bp-status" class="status-button">Status: Normal</button></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Secondary Survey Section -->
+<div id="secondarySurveySection" class="tab-content">
+    <h2>Secondary Survey</h2>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Value</th>
+            <th>Status</th>
+            <th>Doctor's Comments</th>
+        </tr>
+        <tr>
+            <td>Breathing - Respiratory rate</td>
+            <td>18 breaths/minute</td>
+            <td>
+                <button id="breath-resp-rate-status" class="status-button status-normal" onclick="this.className = this.className === 'status-button status-normal' ? 'status-button status-warning' : 'status-button status-normal';">Normal</button>
+            </td>
+            <td><textarea placeholder="Doctor's comments"></textarea></td>
+        </tr>
+        <tr>
+            <td>Breathing - SaO2</td>
+            <td>98%</td>
+            <td>
+                <button id="breath-sao2-status" class="status-button status-normal" onclick="this.className = this.className === 'status-button status-normal' ? 'status-button status-warning' : 'status-button status-normal';">Normal</button>
+            </td>
+            <td><textarea placeholder="Doctor's comments"></textarea></td>
+        </tr>
+        <tr>
+            <td>Pulse</td>
+            <td>60 beats/minute</td>
+            <td>
+                <button id="pulse-secondary-status" class="status-button status-normal" onclick="this.className = this.className === 'status-button status-normal' ? 'status-button status-warning' : 'status-button status-normal';">Normal</button>
+            </td>
+            <td><textarea placeholder="Doctor's comments"></textarea></td>
+        </tr>
+        <tr>
+            <td>Temperature</td>
+            <td>36.7 °C</td>
+            <td>
+                <button id="temp-secondary-status" class="status-button status-normal" onclick="this.className = this.className === 'status-button status-normal' ? 'status-button status-warning' : 'status-button status-normal';">Normal</button>
+            </td>
+            <td><textarea placeholder="Doctor's comments"></textarea></td>
+        </tr>
+        <tr>
+            <td>Blood pressure</td>
+            <td>160/65 mm Hg</td>
+            <td>
+                <button id="bp-secondary-status" class="status-button status-normal" onclick="this.className = this.className === 'status-button status-normal' ? 'status-button status-warning' : 'status-button status-normal';">Normal</button>
+            </td>
+            <td><textarea placeholder="Doctor's comments"></textarea></td>
+        </tr>
+    </table>
+</div>
+
+<!-- Medical History Section -->
+<div id="medicalHistorySection" class="tab-content">
+    <h2>Medical History</h2>
+    <table>
+        <tr>
+            <th>Condition</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>Allergies</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Previous Surgeries</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Current Medications</td>
+            <td>N/A</td>
+        </tr>
+    </table>
+</div>
+
+<!-- Measures Taken Section -->
+<div id="measuresTakenSection" class="measures-taken">
+    <h2>Measures Taken</h2>
+    <form>
+        <label for="pulse-measures">Pulse Measures:</label><br>
+        <textarea id="pulse-measures" rows="4" cols="50" placeholder="Enter measures taken for pulse..."></textarea><br><br>
+
+        <label for="resp-rate-measures">Respiratory Rate Measures:</label><br>
+        <textarea id="resp-rate-measures" rows="4" cols="50" placeholder="Enter measures taken for respiratory rate..."></textarea><br><br>
+
+        <label for="temp-measures">Temperature Measures:</label><br>
+        <textarea id="temp-measures" rows="4" cols="50" placeholder="Enter measures taken for temperature..."></textarea><br><br>
+
+        <label for="sao2-measures">SaO2 Measures:</label><br>
+        <textarea id="sao2-measures" rows="4" cols="50" placeholder="Enter measures taken for SaO2..."></textarea><br><br>
+
+        <label for="bp-measures">Blood Pressure Measures:</label><br>
+        <textarea id="bp-measures" rows="4" cols="50" placeholder="Enter measures taken for blood pressure..."></textarea><br><br>
+
+        <button type="submit">Submit Measures</button>
+    </form>
+</div>
+
+<script>
+    // Initialize the status display
+    updateStatus();
+</script>
+</body>
+</html>

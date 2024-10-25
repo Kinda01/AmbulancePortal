@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Emergency Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Ambulance Emergency Services Portal</h1>
+    <div class="button-container">
+        <button class="button red" onclick="window.location.href='/call-center'">Call Center</button>
+        <button class="button red" onclick="window.location.href='/dispatcher'">Dispatcher Team</button>
+        <button class="button green" onclick="window.location.href='/admin'">Admin</button>
+        <button class="button blue" id="helpBtn">Help</button>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Emergency Services Help</h2>
+            <p>If you're experiencing a medical emergency and have called for an ambulance, here are some steps to take:</p>
+            <ul>
+                <li>Stay calm and provide accurate information to the dispatcher.</li>
+                <li>Give your exact location and any specific details to help the ambulance find you quickly.</li>
+                <li>Follow the dispatcher’s instructions carefully.</li>
+                <li>Keep the patient's airway clear and perform basic first aid if instructed by the dispatcher.</li>
+                <li>Stay with the patient until the ambulance arrives.</li>
+                <li>Provide the ambulance team with any medical history and current symptoms.</li>
+            </ul>
+            <p>For non-life-threatening cases, please consider alternative transport methods to avoid overwhelming emergency services.</p>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

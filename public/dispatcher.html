@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatcher Team</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            text-align: center;
+        }
+        
+        .button-container {
+            margin: 20px;
+        }
+
+        button {
+            background-color: #ff3333;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        iframe {
+            width: 80%;
+            height: 600px;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Dispatcher Team</h1>
+
+    <!-- Buttons to toggle between the pages -->
+    <div class="button-container">
+        <button onclick="loadPage('triage.html')">View Triage</button>
+        <button onclick="loadPage('ambulance-journal.html')">View Ambulance Journal</button>
+        <button onclick="loadPage('ambulance-progress.html')">View Ambulance Progress</button>
+        <button onclick="loadPage('patientdetails.html')">View Patient Details</button> <!-- New Button -->
+    </div>
+
+    <!-- Single iframe to display the pages dynamically -->
+    <iframe id="content-frame" src="" title="Dispatcher Content"></iframe>
+
+    <script>
+        // Function to change the iframe source based on button click
+        function loadPage(page) {
+            document.getElementById('content-frame').src = page;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #0044cc;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #0044cc;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .save-button {
+            display: block;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .save-button:hover {
+            background-color: #218838;
+        }
+        /* Hidden sections by default */
+        .serological-section,
+        .blood-order-section,
+        .transfusion-control-section,
+        .report-section,
+        .transfusion-history-section,
+        .patient-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #0044cc;
+            background-color: #e6f0ff;
+        }
+        .lab-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #0044cc;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .lab-row div {
+            flex: 1;
+            text-align: center;
+            padding: 5px;
+        }
+        .footer-info {
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function hideAllSections() {
+            document.querySelector('.serological-section').style.display = 'none';
+            document.querySelector('.blood-order-section').style.display = 'none';
+            document.querySelector('.transfusion-control-section').style.display = 'none';
+            document.querySelector('.report-section').style.display = 'none';
+            document.querySelector('.transfusion-history-section').style.display = 'none';
+            document.querySelector('.patient-section').style.display = 'none'; // Hiding patient section
+        }
+
+        function showPatientInfo() {
+            hideAllSections();
+            document.querySelector('.patient-section').style.display = 'block'; // Show patient section
+        }
+
+        function showSerologicalStatement() {
+            hideAllSections();
+            document.querySelector('.serological-section').style.display = 'block';
+        }
+
+        function showBloodOrder() {
+            hideAllSections();
+            document.querySelector('.blood-order-section').style.display = 'block';
+        }
+
+        function showTransfusionControl() {
+            hideAllSections();
+            document.querySelector('.transfusion-control-section').style.display = 'block';
+        }
+
+        function showReport() {
+            hideAllSections();
+            document.querySelector('.report-section').style.display = 'block';
+        }
+
+        function showTransfusionHistory() {
+            hideAllSections();
+            document.querySelector('.transfusion-history-section').style.display = 'block';
+        }
+
+        function savePatientInfo() {
+            alert('Patient information saved successfully!');
+        }
+
+        function saveSerologicalInfo() {
+            alert('Serological information saved successfully!');
+        }
+
+        function saveBloodOrder() {
+            alert('Blood order information saved successfully!');
+        }
+
+        function saveTransfusionControl() {
+            alert('Transfusion control information saved successfully!');
+        }
+
+        function saveReport() {
+            alert('Report information saved successfully!');
+        }
+
+        window.onload = function() {
+            // Show Serological Statement by default when the page loads
+            showSerologicalStatement();
+        };
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>TransNet</h1>
+        <p>Patient ID: 19 440407-8588 | Rosenberg, Anna Viola</p>
+    </div>
+
+    <div class="links">
+        <a href="#" onclick="showPatientInfo()">Patient Information</a>
+        <a href="#" onclick="showSerologicalStatement()">Serological Statement</a>
+        <a href="#" onclick="showBloodOrder()">Blood Order</a>
+        <a href="#" onclick="showTransfusionControl()">Transfusion Control</a>
+        <a href="#" onclick="showReport()">Report</a>
+        <a href="#" onclick="showTransfusionHistory()">Transfusion History</a>
+    </div>
+
+    <!-- Patient Information Section -->
+    <div id="patient-section" class="patient-section">
+        <h3>Patient Information</h3>
+        <label for="patientName">Name:</label>
+        <input type="text" id="patientName" value="Anna Viola Rosenberg">
+        
+        <label for="patientAge">Age:</label>
+        <input type="number" id="patientAge" value="32">
+
+        <label for="patientBloodType">Blood Type:</label>
+        <input type="text" id="patientBloodType" value="O+">
+
+        <label for="patientNotes">Medical Notes:</label>
+        <textarea id="patientNotes">None</textarea>
+
+        <button class="save-button" onclick="savePatientInfo()">Save Patient Information</button>
+    </div>
+
+    <!-- Serological Statement Section -->
+    <div id="serological-section" class="serological-section">
+        <h3>Laboratories (Laborationer)</h3>
+        <div class="lab-row">
+            <div>Type A Laboratory</div>
+            <div>Sampling Date</div>
+            <div>Lab Number</div>
+        </div>
+        <!-- Input Fields for Laboratory Information -->
+        <div class="lab-row">
+            <div><input type="text" placeholder="Enter Type of Laboratory"></div>
+            <div><input type="date"></div>
+            <div><input type="text" placeholder="Enter Lab Number"></div>
+        </div>
+        <button class="save-button" onclick="saveSerologicalInfo()">Save Serological Information</button>
+        <div class="footer-info">
+            Part of ProSang by Databyrån
+        </div>
+    </div>
+
+    <!-- Blood Order Section -->
+    <div id="blood-order-section" class="blood-order-section">
+        <h3>Blood Order</h3>
+        <label for="bloodTypeOrder">Blood Type Ordered:</label>
+        <input type="text" id="bloodTypeOrder" placeholder="Enter Blood Type (e.g., O+, A-...)">
+        
+        <label for="orderDate">Order Date:</label>
+        <input type="date" id="orderDate">
+
+        <label for="orderedVolume">Volume Ordered (ml):</label>
+        <input type="number" id="orderedVolume" placeholder="Enter volume in ml">
+
+        <button class="save-button" onclick="saveBloodOrder()">Save Blood Order</button>
+    </div>
+
+    <!-- Transfusion Control Section -->
+    <div id="transfusion-control-section" class="transfusion-control-section">
+        <h3>Transfusion Control</h3>
+        <label for="transfusionDateControl">Date of Transfusion:</label>
+        <input type="date" id="transfusionDateControl">
+
+        <label for="transfusionVolumeControl">Volume Transfused (ml):</label>
+        <input type="number" id="transfusionVolumeControl" placeholder="Enter volume in ml">
+
+        <label for="transfusionDetails">Transfusion Details:</label>
+        <textarea id="transfusionDetails" placeholder="Enter any specific details"></textarea>
+
+        <button class="save-button" onclick="saveTransfusionControl()">Save Transfusion Control</button>
+    </div>
+
+    <!-- Report Section -->
+    <div id="report-section" class="report-section">
+        <h3>Report</h3>
+        <label for="reportDate">Report Date:</label>
+        <input type="date" id="reportDate">
+
+        <label for="reportDetails">Report Details:</label>
+        <textarea id="reportDetails" placeholder="Enter report details"></textarea>
+
+        <button class="save-button" onclick="saveReport()">Save Report</button>
+    </div>
+
+    <!-- Transfusion History Section -->
+    <div id="transfusion-history-section" class="transfusion-history-section">
+        <h3>Transfusion History</h3>
+        <label for="transfusionType">Type of Transfusion:</label>
+        <select id="transfusionType">
+            <option value="wholeBlood">Whole Blood</option>
+            <option value="packedRedCells">Packed Red Cells</option>
+            <option value="platelets">Platelets</option>
+            <option value="plasma">Plasma</option>
+        </select>
+
+        <label for="transfusionDate">Date of Transfusion:</label>
+        <input type="date" id="transfusionDate">
+
+        <label for="transfusionVolume">Volume of Blood Transfused (ml):</label>
+        <input type="number" id="transfusionVolume" placeholder="Enter volume in ml">
+
+        <label for="transfusionReaction">Reaction to Transfusion:</label>
+        <textarea id="transfusionReaction" placeholder="Describe any reactions or comments"></textarea>
+
+        <button class="save-button">Save Transfusion History</button>
+    </div>
+
+</div>
+
+</body>
+</html>

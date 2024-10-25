@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triage System & Ambulance Operations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Ambulance Operations Section -->
+        <header>
+            <h2>Ambulance Operations</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="request.html">Request Ambulance</a></li>
+                    <li><a href="track.html">Track Ambulance</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside>
+            <h3>Ambulance Status</h3>
+            <ul>
+                <li>Status 1: En route</li>
+                <li>Status 2: At location</li>
+                <li>Status 3: Transporting patient</li>
+            </ul>
+        </aside>
+
+        <!-- Patient Triage Information Section -->
+        <main>
+            <h3>Patient Triage Information</h3>
+            <table class="retts-triage">
+                <thead>
+                    <tr>
+                        <th>Primary Examination</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="blue">
+                        <td>A - Airway</td>
+                        <td>Clear</td>
+                    </tr>
+                    <tr class="red">
+                        <td>B - Breathing</td>
+                        <td>Labored</td>
+                    </tr>
+                    <tr class="green">
+                        <td>C - Circulation</td>
+                        <td>Normal</td>
+                    </tr>
+                    <tr class="orange">
+                        <td>Exposure</td>
+                        <td>No abnormal findings</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>RETTs Triage Status</h3>
+            <table class="retts-triage">
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="blue">
+                        <td>SpO2</td>
+                        <td>98%</td>
+                    </tr>
+                    <tr class="red">
+                        <td>Puls</td>
+                        <td>120 bpm</td>
+                    </tr>
+                    <tr class="orange">
+                        <td>Blood Pressure</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr class="green">
+                        <td>Temperature</td>
+                        <td>36.7°C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <!-- Triage Result Section -->
+        <div id="result">
+            <h2>Triage Result: <span id="triageCategory"></span></h2>
+        </div>
+
+        <!-- Triage System Form Section -->
+        <h1>Triage System</h1>
+        <form id="triageForm">
+            <label for="spo2">SpO2 (%)</label>
+            <input type="number" id="spo2" name="spo2" required>
+
+            <label for="pulse">Pulse (bpm)</label>
+            <input type="number" id="pulse" name="pulse" required>
+
+            <label for="temperature">Temperature (°C)</label>
+            <input type="number" id="temperature" name="temperature" step="0.1" required>
+
+            <label for="bloodPressure">Blood Pressure (Systolic/Diastolic)</label>
+            <input type="text" id="bloodPressure" name="bloodPressure" required>
+
+            <label for="gcs">Glasgow Coma Scale (GCS)</label>
+            <input type="number" id="gcs" name="gcs" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

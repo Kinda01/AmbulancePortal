@@ -1,0 +1,280 @@
+/* Reset and Box-Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Modal Styling */
+#progressModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+}
+
+#progressModal.show {
+    display: block;
+}
+
+#progressModal h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+#progressModal table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#progressModal th,
+#progressModal td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+#progressModal th {
+    background-color: #f4f4f4;
+}
+
+/* Layout and Container Styles */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+header {
+    grid-column: span 2;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+header h1, header h2 {
+    margin-bottom: 10px;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 40px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Aside Styling */
+aside {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+aside h3 {
+    margin-bottom: 10px;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    margin-bottom: 10px;
+}
+
+/* Main Content Styling */
+main {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Triage Table Styling */
+thead th {
+    background-color: #ddd;
+}
+
+.primary-exam th,
+.retts-triage th {
+    background-color: #f4f4f4;
+}
+
+tbody td {
+    text-align: left;
+}
+
+/* Color-Coded Triage Blocks */
+.blue { background-color: #cce5ff; color: #004085; }
+.red { background-color: #f8d7da; color: #721c24; }
+.orange { background-color: #fff3cd; color: #856404; }
+.yellow { background-color: #fff8d1; color: #a68800; }
+.green { background-color: #d4edda; color: #155724; }
+
+/* Status Indicator */
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.signed { background-color: green; }
+.unsigned { background-color: red; }
+
+/* Journal Container */
+.journal-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+/* Color Box for Status */
+.color-box {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Triage Color Blocks */
+.triage-colors {
+    margin-top: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#triageCategory {
+    font-weight: bold;
+    color: green;
+}
+
+/* Square Box Styling */
+.square {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.square-red { background-color: red; border-color: red; }
+.square-orange { background-color: orange; border-color: orange; }
+.square-yellow { background-color: yellow; border-color: yellow; }
+.square-green { background-color: green; border-color: green; }
+.square-blue { background-color: blue; border-color: blue; }
+.square-black { background-color: black; border-color: black; }
+
+/* Priority Table Border Styles */
+.priority-red { border: 2px solid red; }
+.priority-orange { border: 2px solid orange; }
+.priority-yellow { border: 2px solid yellow; }
+.priority-green { border: 2px solid green; }
+.priority-blue { border: 2px solid blue; }
+.priority-black { border: 2px solid black; }
+
+.no-border {
+    border: none;
+}
+
+.ess-row {
+    text-align: center;
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.sub-column {
+    width: 50%;
+    vertical-align: top;
+}
+
+/* Additional Styles for Login */
+.login-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    text-align: center;
+}

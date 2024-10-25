@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Journal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .journal-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            display: none; /* Hide tables initially */
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .status {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="journal-container">
+        <h2>Ambulance Journal</h2>
+        
+        <!-- Button Section -->
+        <div class="button-container">
+            <button onclick="showSection('journalTable')">Ambulance Journal</button>
+            <button onclick="showSection('patientInfoTable')">Patient's Information</button>
+            <button onclick="showSection('primarySurveyTable')">Primary Survey</button>
+            <button onclick="showSection('secondarySurveyTable')">Secondary Survey</button>
+        </div>
+
+        <!-- Ambulance Journal Table -->
+        <table id="journalTable">
+            <tr>
+                <th>Assignment</th>
+                <td>Sk-Skellefteå</td>
+            </tr>
+            <tr>
+                <th>Station</th>
+                <td>Skellefteå</td>
+            </tr>
+            <tr>
+                <th>Radio</th>
+                <td>9410</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>1</td>
+            </tr>
+            <tr>
+                <th>Departure</th>
+                <td>2020-10-11 19:35</td>
+            </tr>
+            <tr>
+                <th>Arrival</th>
+                <td>2020-10-11 19:48</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>Alhemsgatan 7A, Skellefteå</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>Skellefteå AKM</td>
+            </tr>
+        </table>
+
+        <!-- Patient's Information Table -->
+        <table id="patientInfoTable">
+            <tr>
+                <th>Personal Number</th>
+                <td>19440407-8588</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>Anna Viola Rosenberg</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>76 years</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>Female</td>
+            </tr>
+            <tr>
+                <th>ID Check</th>
+                <td>Information retrieved from population register</td>
+            </tr>
+        </table>
+
+        <!-- Primary Survey Table -->
+        <table id="primarySurveyTable">
+            <tr>
+                <th>Airway</th>
+                <td>Clear</td>
+            </tr>
+            <tr>
+                <th>Breathing</th>
+                <td>Normal</td>
+            </tr>
+            <tr>
+                <th>Circulation</th>
+                <td>Normal</td>
+            </tr>
+        </table>
+
+        <!-- Secondary Survey Table -->
+        <table id="secondarySurveyTable">
+            <tr>
+                <th>Vital Signs</th>
+                <td>Blood Pressure: 120/80 mmHg, Heart Rate: 80 bpm, Respiratory Rate: 18 breaths/min, Temperature: 37.5°C</td>
+            </tr>
+            <tr>
+                <th>Other Findings</th>
+                <td>Pain in the left chest, shortness of breath</td>
+            </tr>
+        </table>
+
+        <p class="status">Signed: 2020-10-11 20:05:19 by Rune Eklund</p>
+    </div>
+
+    <script>
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all tables
+            document.querySelectorAll('table').forEach(table => {
+                table.style.display = 'none';
+            });
+            // Show the selected table
+            document.getElementById(sectionId).style.display = 'table';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ambulance Management</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .admin-dashboard {
+            margin: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.delete {
+            background-color: red;
+        }
+
+        button.update,
+        button.assign {
+            background-color: green;
+        }
+
+        button.track {
+            background-color: orange;
+        }
+
+        button.report {
+            background-color: purple;
+        }
+
+        #progressModal,
+        #nurseReportModal,
+        #previewModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #progressModal h3,
+        #nurseReportModal h3,
+        #previewModal h3 {
+            margin: 0 0 15px;
+        }
+
+        #progressModal ul,
+        #nurseReportModal ul,
+        #previewModal ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #progressModal ul li,
+        #nurseReportModal ul li,
+        #previewModal ul li {
+            padding: 5px 0;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-dashboard">
+        <h2>Admin Dashboard - Ambulance Requests</h2>
+
+        <!-- Search Bar -->
+        <input type="text" id="searchInput" placeholder="Search requests by name..." onkeyup="searchRequests()">
+
+        <button onclick="previewData()">Preview Data</button>
+        <button onclick="downloadData()">Download Data</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Emergency Level</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="adminTable">
+                <!-- Data will be dynamically loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Tracking Ambulance Progress -->
+    <div id="progressModal">
+        <h3>Ambulance Progress for Request <span id="requestID"></span></h3>
+        <ul id="progressList"></ul>
+        <button onclick="closeProgressModal()">Close</button>
+    </div>
+
+    <!-- Modal for Viewing Nurse Report -->
+    <div id="nurseReportModal">
+        <h3>Nurse Report for Request <span id="nurseRequestID"></span></h3>
+        <ul id="nurseReportList"></ul>
+        <button onclick="closeNurseReportModal()">Close</button>
+    </div>
+
+    <!-- Modal for Previewing Data -->
+    <div id="previewModal">
+        <h3>Data Preview</h3>
+        <div id="previewContent"></div>
+        <button onclick="closePreviewModal()">Close</button>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <script>
+        // Sample data for demonstration
+        const requests = [
+            { id: 1, name: "John Doe", location: "Meru", emergency: "High", status: "Ongoing", timestamps: [], distance: 20, fuelConsumption: 8, nurseReport: "Patient was stable. Administered first aid and took vital signs." },
+            { id: 2, name: "Jane Smith", location: "Nairobi", emergency: "Medium", status: "Pending", timestamps: [], distance: 35, fuelConsumption: 10, nurseReport: "Patient complained of mild discomfort. No further actions were necessary." },
+            { id: 3, name: "Mike Brown", location: "Arusha", emergency: "Low", status: "Pending", timestamps: [], distance: 15, fuelConsumption: 6, nurseReport: "Patient was in good condition. No issues reported." }
+        ];
+
+        // Function to display the requests in the table
+        function loadRequests() {
+            const table = document.getElementById("adminTable");
+            table.innerHTML = ""; // Clear the table before loading new data
+
+            requests.forEach(request => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${request.id}</td>
+                    <td>${request.name}</td>
+                    <td>${request.location}</td>
+                    <td>${request.emergency}</td>
+                    <td>${request.status}</td>
+                    <td>
+                        <button class="track" onclick="trackProgress(${request.id})">Track</button>
+                        <button class="assign" onclick="assignAmbulance(${request.id})">Assign Ambulance</button>
+                        <button class="update" onclick="updateStatus(${request.id})">Update Status</button>
+                        <button class="delete" onclick="deleteRequest(${request.id})">Delete</button>
+                        <button class="report" onclick="viewNurseReport(${request.id})">View Nurse Report</button>
+                    </td>
+                `;
+                table.appendChild(row);
+            });
+        }
+
+        // Function to track ambulance progress
+        function trackProgress(id) {
+            const request = requests.find(r => r.id === id);
+            if (request) {
+                document.getElementById('requestID').innerText = request.id;
+                const progressList = document.getElementById('progressList');
+                progressList.innerHTML = ""; // Clear previous progress
+
+                // Example timestamps for demonstration
+                const progressEvents = [
+                    { label: "Patient Called Ambulance", time: "10:00 AM" },
+                    { label: "Ambulance Left Hospital", time: "10:15 AM" },
+                    { label: "Patient Picked Up", time: "10:45 AM" },
+                    { label: "Patient Delivered to Hospital", time: "11:10 AM" },
+                    { label: "First Aid Given: Medication X", time: "On route" }
+                ];
+
+                progressEvents.forEach(event => {
+                    const li = document.createElement('li');
+                    li.innerText = `${event.label} - ${event.time}`;
+                    progressList.appendChild(li);
+                });
+                document.getElementById('progressModal').style.display = 'block';
+            }
+        }
+
+        // Function to close the progress modal
+        function closeProgressModal() {
+            document.getElementById('progressModal').style.display = 'none';
+        }
+
+        // Function to assign an ambulance
+        function assignAmbulance(id) {
+            const request = requests.find(r => r.id === id);
+            if (request) {
+                const ambulance = prompt("Enter ambulance ID to assign:");
+                if (ambulance) {
+                    request.status = "Ongoing";
+                    loadRequests(); // Refresh the table
+                    alert(`Ambulance ${ambulance} assigned to Request ID: ${id}`);
+                }
+            }
+        }
+
+        // Function to calculate ambulance charges
+        function calculateCharges(request) {
+            const distanceCharge = request.distance * 10; // Assuming 10 currency units per km
+            const timeCharge = request.timestamps.length * 5; // Assuming 5 units per timestamp (just an example)
+            const fuelCharge = request.fuelConsumption * 50; // Fuel consumption units per litre
+
+            return distanceCharge + timeCharge + fuelCharge;
+        }
+
+        // Function to update the status of a request
+        function updateStatus(id) {
+            const request = requests.find(r => r.id === id);
+            if (request) {
+                const newStatus = prompt("Enter new status (Pending, Ongoing, Completed):", request.status);
+                if (newStatus) {
+                    request.status = newStatus;
+                    loadRequests(); // Refresh the table
+                }
+
+                if (newStatus === "Completed") {
+                    const charges = calculateCharges(request);
+                    alert(`Ambulance charges for Request ID ${id}: ${charges} units`);
+                }
+            }
+        }
+
+        // Function to delete a request
+        function deleteRequest(id) {
+            const index = requests.findIndex(r => r.id === id);
+            if (index !== -1) {
+                requests.splice(index, 1);
+                loadRequests(); // Refresh the table
+                alert(`Request ID ${id} deleted.`);
+            }
+        }
+
+        // Function to view nurse report
+        function viewNurseReport(id) {
+            const request = requests.find(r => r.id === id);
+            if (request) {
+                document.getElementById('nurseRequestID').innerText = request.id;
+                const nurseReportList = document.getElementById('nurseReportList');
+                nurseReportList.innerHTML = ""; // Clear previous report
+                const li = document.createElement('li');
+                li.innerText = request.nurseReport;
+                nurseReportList.appendChild(li);
+                document.getElementById('nurseReportModal').style.display = 'block';
+            }
+        }
+
+        // Function to close the nurse report modal
+        function closeNurseReportModal() {
+            document.getElementById('nurseReportModal').style.display = 'none';
+        }
+
+        // Function to preview data
+        function previewData() {
+            const previewContent = document.getElementById('previewContent');
+            previewContent.innerHTML = ""; // Clear previous content
+
+            requests.forEach(request => {
+                const requestInfo = `<strong>Request ID:</strong> ${request.id}<br>
+                                    <strong>Name:</strong> ${request.name}<br>
+                                    <strong>Location:</strong> ${request.location}<br>
+                                    <strong>Emergency Level:</strong> ${request.emergency}<br>
+                                    <strong>Status:</strong> ${request.status}<br><br>`;
+                previewContent.innerHTML += requestInfo;
+            });
+
+            document.getElementById('previewModal').style.display = 'block';
+        }
+
+        // Function to close the preview modal
+        function closePreviewModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        // Function to download data as CSV
+        function downloadData() {
+            const csvContent = "data:text/csv;charset=utf-8," +
+                "Request ID,Name,Location,Emergency Level,Status\n" +
+                requests.map(request => `${request.id},"${request.name}","${request.location}","${request.emergency}","${request.status}"`).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "ambulance_requests.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Function to search requests by name
+        function searchRequests() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const filteredRequests = requests.filter(request => request.name.toLowerCase().includes(input));
+            displayFilteredRequests(filteredRequests);
+        }
+
+        // Function to display filtered requests
+        function displayFilteredRequests(filteredRequests) {
+            const table = document.getElementById("adminTable");
+            table.innerHTML = ""; // Clear the table before loading new data
+
+            filteredRequests.forEach(request => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${request.id}</td>
+                    <td>${request.name}</td>
+                    <td>${request.location}</td>
+                    <td>${request.emergency}</td>
+                    <td>${request.status}</td>
+                    <td>
+                        <button class="track" onclick="trackProgress(${request.id})">Track</button>
+                        <button class="assign" onclick="assignAmbulance(${request.id})">Assign Ambulance</button>
+                        <button class="update" onclick="updateStatus(${request.id})">Update Status</button>
+                        <button class="delete" onclick="deleteRequest(${request.id})">Delete</button>
+                        <button class="report" onclick="viewNurseReport(${request.id})">View Nurse Report</button>
+                    </td>
+                `;
+                table.appendChild(row);
+            });
+        }
+
+        // Load requests when the page loads
+        window.onload = loadRequests;
+    </script>
+</body>
+
+</html>
