@@ -1,0 +1,186 @@
+/* Define color palette */
+:root {
+  --primary-color: #4c4cdb; /* Purple */
+  --secondary-color: #2e2e68; /* Dark purple */
+  --accent-color: #4CAF50; /* Green for low occupancy */
+  --danger-color: #FF5722; /* Orange for high occupancy */
+  --background-color: #ffffff; /* White background */
+  --card-background: #f9f9f9; /* Light gray for cards */
+  --card-border-color: #ddd; /* Light border color */
+  --button-background: #4c4cdb; /* Purple for buttons */
+  --button-hover: #3b3bac; /* Darker purple on hover */
+  --footer-background: #4c4cdb; /* Purple for footer */
+}
+
+/* Main App Container */
+.App {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+/* Sidebar (Navigation Bar) */
+nav {
+  background-color: var(--secondary-color);
+  width: 200px; /* Reduced width of sidebar */
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-bottom: 20px;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+nav ul li a:focus {
+  outline: 3px solid var(--primary-color); /* Focus outline in purple */
+}
+
+/* Main Content Area */
+main {
+  margin-left: 220px; /* Adjusted offset based on new sidebar width */
+  padding: 20px;
+  flex: 1;
+}
+
+/* Header Styling */
+.App-header {
+  background-color: var(--primary-color);
+  padding: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.App-header h1 {
+  color: #ffffff;
+}
+
+/* Footer Styling */
+/* Footer Styling */
+footer {
+  background-color: var(--footer-background);
+  color: #ffffff;
+  padding: -5px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 200px); /* Adjust footer width based on sidebar */
+  margin-left: 200px;
+  font-size: 12px; /* Reduced font size */
+}
+
+footer p {
+  margin: 0; /* Remove any default margin around the text */
+  font-size: 0.8em; /* Further decrease the size if needed */
+}
+
+
+@media (max-width: 768px) {
+  nav {
+    width: 100px; /* Smaller sidebar on mobile */
+  }
+  main {
+    margin-left: 120px; /* Adjust main content offset for mobile */
+  }
+  footer {
+    width: 100%; /* Full width footer on mobile */
+    margin-left: 0;
+  }
+}
+
+/* Button Styling */
+button {
+  background-color: var(--button-background);
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+button:focus {
+  outline: 2px solid var(--card-border-color); /* Focus outline in purple */
+}
+
+/* Department Card Styling */
+.department-card {
+  border: 1px solid var(--card-border-color);
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: var(--secondary-color);
+}
+
+.department-card h4 {
+  color: var(--primary-color);
+}
+
+.department-card .occupancy {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.department-card .occupancy-status-low {
+  color: var(--accent-color); /* Green for low occupancy */
+}
+
+.department-card .occupancy-status-high {
+  color: var(--danger-color); /* Orange for high occupancy */
+}
+
+.department-card:hover {
+  background-color: #e6e6e6; /* Light gray on hover */
+}
+
+/* Logo Container Styling */
+.logo-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  max-width: 150px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Image Styling */
+.logo-image {
+  width: 200px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+/* Text Styling */
+.logo-container h2 {
+  color: var(--primary-color);
+  font-size: 14px;
+  margin: 0;
+}

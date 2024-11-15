@@ -1,0 +1,89 @@
+.container {
+    max-width: 560px; /* Reduced from 800px to 560px */
+    margin: auto;
+    padding: 14px; /* Reduced from 20px to 14px */
+    background: white;
+    border: 1px solid #ccc;
+}
+
+.header {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 7px; /* Reduced from 10px to 7px */
+    font-size: 1.2em; /* Slightly reduced font size */
+}
+
+.triage-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px; /* Reduced from 14px to 10px */
+}
+
+.triage-table th, .triage-table td {
+    border: 1px solid #000;
+    padding: 4px; /* Reduced from 6px to 4px */
+    text-align: left;
+}
+
+
+
+.input-label {
+    display: inline-block;
+    margin-right: 3px; /* Reduced from 4px to 3px */
+    font-weight: bold;
+    font-size: 10px; /* Slightly reduced font size */
+}
+
+.small-input {
+    width: 28px; /* Reduced from 40px to 28px */
+    padding: 2px; /* Reduced from 3px to 2px */
+    font-size: 10px; /* Reduced from 14px to 10px */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.vertical-line {
+    background-color: #000;
+    width: 2px;
+    height: 100%;
+    margin: 0 8px; /* Reduced from 10px to 8px */
+}
+
+/* Priority row background colors */
+.priority-blue { background-color: #add8e6; } /* Light Blue for Blue Priority */
+.priority-orange { background-color: #ffd699; } /* Light Orange for Threatened Airway */
+.priority-yellow { background-color: #ffffb3; } /* Light Yellow for Threatened Airway */
+.priority-green { background-color: #ccffcc; } /* Light Green for Free Airway */
+
+/* Specific row styles */
+/* Specific row styles - Full borders on all sides */
+.priority-row-blue {
+    border: 2px solid #0c42f3;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.priority-row-red {
+    border: 2px solid #ff6666;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.priority-row-orange {
+    border: 2px solid #ffd699;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.priority-row-yellow {
+    border: 2px solid #ffffb3;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.priority-row-green {
+    border: 5px solid #024e02;
+    border-radius: 5px; /* Optional: add rounded corners */
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+}

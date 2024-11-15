@@ -1,0 +1,48 @@
+/* Add this CSS to your AmbulanceDetailsPage.css */
+
+.ambulance-details-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .button {
+    padding: 12px 25px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 150px;
+    text-align: center;
+  }
+  
+  .button:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+  }
+  
+  .content {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  iframe {
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  

@@ -1,0 +1,110 @@
+.patient-info-container {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .section {
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  #vitalSignsSection {
+    background-color: #e6f9e6;  /* Lighter green for Vital Signs */
+    color: black;  /* Ensure text is legible */
+  }
+  
+  #secondarySurveySection {
+    background-color: #b3e6b3;  /* Slightly darker green for Secondary Survey */
+    color: black;  /* Text should be black for contrast */
+  }
+  
+  #measuresTakenSection {
+    background-color: #99cc99;  /* Subtle green for Measures Taken */
+    color: black;  /* Black text for contrast */
+  }
+  
+  #medicalHistorySection {
+    background-color: #b3e6b3;  /* Green for Medical History */
+    color: rgb(8, 8, 8);  /* White text for visibility */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  
+  td {
+    padding: 3px;
+    border: 1px solid #ddd;
+  }
+  
+  button {
+    padding: 4px 8px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    padding: 5px;
+  }
+  
+  .status-button {
+    font-size: 12px;
+  }
+  
+  .medical-history-form {
+    font-size: 12px;
+  }
+  
+  .medical-history-form input[type="radio"] {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  
+  .medical-history-form label {
+    color: rgb(14, 13, 13);  /* Ensure the label text is white for readability */
+  }
+  
+  .measure-entry {
+    margin-bottom: 5px;
+  }
+  
+  /* Vital Signs Status Button Colors */
+  button[style*="background-color: green"] {
+    background-color: #66cc66; /* Light green for "Normal" status */
+  }
+  
+  button[style*="background-color: yellow"] {
+    background-color: #ffff66; /* Yellow for "Warning" status */
+  }
+  
+  button[style*="background-color: red"] {
+    background-color: #ff6666; /* Red for "Critical" status */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

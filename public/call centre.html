@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Call Dashboard</title>
+    <link rel="stylesheet" href="call-centre.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            width: 100%;
+            background: #4CAF50;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+        #sidebar {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            background-color: #333;
+            padding: 10px;
+        }
+        #sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        #sidebar a:hover {
+            background-color: #555;
+        }
+        #main {
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .execution-table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        .execution-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .execution-table th, .execution-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .execution-table th {
+            background-color: #f2f2f2;
+        }
+        .execution-table td button {
+            background-color: #2196F3;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .execution-table td button:hover {
+            background-color: #0b7dda;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 250px;
+            word-wrap: break-word;
+        }
+        .tooltip.visible {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .execution-table th, .execution-table td {
+                font-size: 14px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Patient Call Dashboard</h1>
+    </header>
+    <div id="sidebar">
+        <a href="#" onclick="navigate('home')">Home</a>
+        <a href="#" onclick="navigate('pending')">Pending Executions</a>
+        <a href="#" onclick="navigate('completed')">Completed Executions</a>
+        <a href="#" onclick="navigate('team')">Team Report</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+    <div id="main">
+        <h2>Welcome to the Patient Call Dashboard</h2>
+        <p>Select an execution above to get started.</p>
+        <button class="btn" onclick="showNotifications()">Show Notifications</button>
+    </div>
+
+    <!-- Tooltip to Show Patient Details on Hover -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Add New Patient Modal -->
+    <div id="addPatientModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+        <div style="background: white; padding: 20px; border-radius: 8px; width: 300px;">
+            <h3>Add New Patient</h3>
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" /><br/><br/>
+            <label for="reasonForCall">Reason for Call:</label>
+            <input type="text" id="reasonForCall" /><br/><br/>
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" /><br/><br/>
+            <label for="timeCalled">Time Called:</label>
+            <input type="text" id="timeCalled" /><br/><br/>
+            <label for="address">Address:</label>
+            <input type="text" id="address" /><br/><br/>
+            <label for="telephone">Telephone:</label>
+            <input type="text" id="telephone" /><br/><br/>
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="Pending">Pending</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Cancelled">Cancelled</option>
+            </select><br/><br/>
+            <button class="btn" onclick="addPatient()">Add Patient</button>
+            <button class="btn" onclick="closeAddPatientModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let teamReportData = [];
+
+        // Function to navigate to different sections
+        function navigate(section) {
+            const pageContent = document.getElementById('main');
+            if (section === 'home') {
+                pageContent.innerHTML = `
+                    <h2>Welcome to the Patient Call Dashboard</h2>
+                    <p>Select a section from the sidebar to get started.</p>
+                    <button class="btn" onclick="showNotifications()">Show Notifications</button>
+                `;
+            } else if (section === 'pending') {
+                loadPendingExecutions();
+            } else if (section === 'completed') {
+                loadCompletedExecutions();
+            } else if (section === 'team') {
+                loadTeamReport();
+            }
+        }
+
+        function loadPendingExecutions() {
+            const pageContent = document.getElementById('main');
+            pageContent.innerHTML = `
+                <h2>Pending Executions</h2>
+                <button class="btn" onclick="openAddPatientModal()">Add New Patient</button>
+                <div class="execution-table-container">
+                    <table class="execution-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Reason for Call</th>
+                                <th>Condition at Call Time</th>
+                                <th>Time Called</th>
+                                <th>Time Since Last Called</th>
+                                <th>Address</th>
+                                <th>Telephone Number</th>
+                                <th>Status</th>
+                                <th>Assign Team</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingExecutionsBody">
+                            <!-- New Patients Will Be Added Here -->
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function loadCompletedExecutions() {
+            const pageContent = document.getElementById('main');
+            pageContent.innerHTML = `
+                <h2>Completed Executions</h2>
+                <button class="btn" onclick="openAddPatientModal()">Add New Patient</button>
+                <div class="execution-table-container">
+                    <table class="execution-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Reason for Call</th>
+                                <th>Time Called</th>
+                                <th>Time Since Last Call</th>
+                                <th>Address</th>
+                                <th>Telephone Number</th>
+                                <th>Time Concluded</th>
+                                <th>Status</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completedExecutionsBody">
+                            <!-- Completed Patients Will Appear Here -->
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function loadTeamReport() {
+            const pageContent = document.getElementById('main');
+            pageContent.innerHTML = `
+                <h2>Team Report</h2>
+                <table class="execution-table">
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Assigned Team</th>
+                            <th>Short Report</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teamReportBody">
+                        <!-- Team Report Rows Will Be Added Here -->
+                    </tbody>
+                </table>
+            `;
+            renderTeamReport();
+        }
+
+        // Open Add Patient Modal
+        function openAddPatientModal() {
+            document.getElementById('addPatientModal').style.display = 'flex';
+        }
+
+        function closeAddPatientModal() {
+            document.getElementById('addPatientModal').style.display = 'none';
+        }
+
+        function addPatient() {
+            const patientName = document.getElementById('patientName').value;
+            const reasonForCall = document.getElementById('reasonForCall').value;
+            const condition = document.getElementById('condition').value;
+            const timeCalled = document.getElementById('timeCalled').value;
+            const address = document.getElementById('address').value;
+            const telephone = document.getElementById('telephone').value;
+            const status = document.getElementById('status').value;
+
+            const newRow = `
+                <tr>
+                    <td class="patient-name" onmouseover="showDetails(this)" onmouseout="hideDetails()">${patientName}</td>
+                    <td><input type="text" value="${reasonForCall}" disabled></td>
+                    <td><input type="text" value="${condition}" disabled></td>
+                    <td><input type="text" value="${timeCalled}" disabled></td>
+                    <td><input type="text" value="N/A" disabled></td>
+                    <td><input type="text" value="${address}" disabled></td>
+                    <td><input type="text" value="${telephone}" disabled></td>
+                    <td>
+                        <select>
+                            <option value="Pending" ${status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Resolved" ${status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+                            <option value="Cancelled" ${status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td><button class="btn" onclick="assignTeam(this)">Assign Team</button></td>
+                </tr>
+            `;
+
+            document.getElementById('pendingExecutionsBody').innerHTML += newRow;
+            closeAddPatientModal();
+        }
+
+        function assignTeam(button) {
+            const row = button.closest('tr');
+            const patientName = row.cells[0].querySelector('input').value;
+            const reasonForCall = row.cells[1].querySelector('input').value;
+            const timeCalled = row.cells[3].querySelector('input').value;
+            
+            // Create the dropdown for team selection
+            const teamSelect = `
+                <select id="teamSelect">
+                    <option value="Team A">Team A</option>
+                    <option value="Team B">Team B</option>
+                    <option value="Team C">Team C</option>
+                </select>
+            `;
+
+            // Prompt user to select a team from the dropdown
+            const teamAssignmentRow = `
+                <div style="margin-top: 10px;">
+                    <label for="teamSelect">Assign Team: </label>
+                    ${teamSelect}
+                    <button class="btn" onclick="confirmTeamAssignment('${patientName}', '${reasonForCall}', '${timeCalled}')">Assign</button>
+                </div>
+            `;
+            
+            // Append the team selection to the row
+            row.cells[8].innerHTML = teamAssignmentRow;
+        }
+
+        function confirmTeamAssignment(patientName, reasonForCall, timeCalled) {
+            const selectedTeam = document.getElementById('teamSelect').value;
+
+            // Add the patient to the team report
+            teamReportData.push({
+                patientName: patientName,
+                reasonForCall: reasonForCall,
+                timeCalled: timeCalled,
+                teamAssigned: selectedTeam,
+                shortReport: ''
+            });
+
+            renderTeamReport();
+            alert('Team assigned to patient.');
+
+            // Remove the patient from the pending executions list
+            const row = document.querySelector(`#pendingExecutionsBody tr`);
+            row.remove(); 
+        }
+
+        function renderTeamReport() {
+            const teamReportBody = document.getElementById('teamReportBody');
+            teamReportBody.innerHTML = '';
+
+            teamReportData.forEach(patient => {
+                const row = `
+                    <tr>
+                        <td>${patient.patientName}</td>
+                        <td>${patient.teamAssigned}</td>
+                        <td>
+                            <textarea rows="4" cols="30" placeholder="Add short report here..." oninput="updateShortReport(this, '${patient.patientName}')"></textarea>
+                        </td>
+                    </tr>
+                `;
+                teamReportBody.innerHTML += row;
+            });
+        }
+
+        function updateShortReport(textarea, patientName) {
+            const patient = teamReportData.find(p => p.patientName === patientName);
+            if (patient) {
+                patient.shortReport = textarea.value;
+            }
+        }
+
+        function showDetails(element) {
+            const patientName = element.innerText;
+            const row = element.closest('tr');
+            const details = {
+                reasonForCall: row.cells[1].querySelector('input').value,
+                condition: row.cells[2].querySelector('input').value,
+                timeCalled: row.cells[3].querySelector('input').value,
+                address: row.cells[5].querySelector('input').value,
+                telephone: row.cells[6].querySelector('input').value
+            };
+
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = `
+                <strong>${patientName}</strong><br/>
+                Reason: ${details.reasonForCall}<br/>
+                Condition: ${details.condition}<br/>
+                Time Called: ${details.timeCalled}<br/>
+                Address: ${details.address}<br/>
+                Telephone: ${details.telephone}
+            `;
+            tooltip.classList.add('visible');
+            tooltip.style.top = `${element.getBoundingClientRect().top + window.scrollY + 20}px`;
+            tooltip.style.left = `${element.getBoundingClientRect().left + window.scrollX + 20}px`;
+        }
+
+        function hideDetails() {
+            document.getElementById('tooltip').classList.remove('visible');
+        }
+
+        function saveChanges() {
+            alert('Changes Saved!');
+        }
+
+        function logout() {
+            alert('Logged out!');
+        }
+
+        function showNotifications() {
+            alert('Showing notifications!');
+        }
+    </script>
+</body>
+</html>

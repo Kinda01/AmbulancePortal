@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETTs Triage Interface</title>
+    <link rel="stylesheet" href="AmbulanceDetails.css"> <!-- External CSS link -->
+
+</head>
+<body>
+
+<div class="container">
+    <div class="header">RETTs Triage</div>
+    <table class="triage-table">
+        <!-- Priority Level Headers -->
+        <tr>
+         <th style="border-left: 2px solid black;">A</th>
+        <th style="border-left: 2px solid blue;">Patient Not in Need of Triage<br><input type="checkbox"> Blue Priority</th>
+        <th style="border-left: 2px solid red;">No Free Airway (Red)<br><input type="checkbox"> No Free Airway</th>
+        <th style="border-left: 2px solid orange;">Threatened Airway (Orange)<br><input type="checkbox"> Threatened Airway</th>
+        <th style="border-left: 2px solid yellow;">Threatened Airway (Yellow)<br><input type="checkbox"> Threatened Airway</th>
+        <th style="border-left: 2px solid green;">Free Airway (Green)<br><input type="checkbox"> Free Airway</th>
+    </tr>
+        
+        <!-- Editable row for SpO₂, Pulse, RSL, Temp on the left; AF, BT, GCS, EKG on the right -->
+        <tr>
+    <td>B</td>
+    <td> <div class="input-section">
+            <div style="flex: 1; text-align: center;">
+                <input type="checkbox" class="small-input">
+                <label>Spo2:</label>
+                <input type="text" class="small-input" placeholder="">
+            </div>
+            <div class="vertical-line"></div>
+            <div style="flex: 1; text-align: center;">
+                <input type="checkbox" class="small-input">
+                <label>AF:</label>
+                <input type="text" class="small-input" placeholder=""/>
+            </div>
+        </div>
+        </div>
+    </td>
+    <td class="priority-red">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SpO₂:</span><input type="text" class="small-input" placeholder=""><br>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">AF:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+    <td class="priority">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SpO₂:</span><input type="text" class="small-input" placeholder=""><br>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">AF:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+    <td>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SpO₂:</span><input type="text" class="small-input" placeholder="">
+    </td>
+    <td class="priority">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SpO₂:</span><input type="text" class="small-input" placeholder=""><br>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">AF:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+</tr>
+
+
+        <!-- Repeat the same structure for other rows -->
+        <tr>
+    <td>C</td>
+    <td>
+        <div class="input-section">
+            <div style="flex: 1; text-align: center;">
+                <input type="checkbox" class="small-input">
+                <label>Pulse:</label>
+                <input type="text" class="small-input" placeholder="">
+            </div>
+            <div class="vertical-line"></div>
+            <div style="flex: 1; text-align: center;">
+                <input type="checkbox" class="small-input">
+                <label>BT:</label>
+                <input type="text" class="small-input" placeholder=""/>
+            </div>
+        </div>
+    </td>
+    <td class="priority-red">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">Pulse:</span><input type="text" class="small-input" placeholder=""><br>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SBT:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+    <td class="priority">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">Pulse:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+    <td>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">Pulse:</span><input type="text" class="small-input" placeholder="">
+    </td>
+    <td class="priority">
+        <input type="checkbox" class="small-input">
+        <span class="input-label">Pulse:</span><input type="text" class="small-input" placeholder=""><br>
+        <input type="checkbox" class="small-input">
+        <span class="input-label">SBT:</span><input type="text" class="small-input" placeholder=""><br>
+    </td>
+</tr>
+
+
+        <!-- Row for RLS -->
+        <tr>
+            <td>D</td>
+            <td>
+               <div class="input-section">
+    <div style="flex: 1; text-align: center;">
+        <input type="checkbox" class="small-input">
+        <label>RSL:</label>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+    <div class="vertical-line"></div>
+    <div style="flex: 1; text-align: center;">
+        <input type="checkbox" class="small-input">
+        <label>GCS:</label>
+        <input type="text" class="small-input" placeholder=""/>
+    </div>
+</div>
+
+            </td>
+     <td class="priority">
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">RSL:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">GCS:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+
+      <div style="display: flex; align-items: center;">
+        
+        <input type="checkbox" class="small-input" style="margin-right: 5px;"><span class="input-label" style="margin-right: 5px;">Ongoing Cramp: <input type="text" class="small-input" placeholder=""></span>
+       
+    </div>
+</td>
+
+<td class="priority">
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">RLS:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">GSC:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+</td>
+
+
+</td>
+
+
+<td class="priority">
+    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">RSL:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <input type="checkbox" class="small-input" style="margin-right: 5px;">
+        <span class="input-label" style="margin-right: 5px;">Acute Cramp:</span>
+        <input type="text" class="small-input" placeholder="">
+    </div>
+
+      
+<td class="priority">
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">RSL:</span>
+    <input type="text" class="small-input" placeholder=""><br>
+    
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">GCS:</span>
+    <input type="text" class="small-input" placeholder=""><br>
+</td>
+
+        </tr>
+
+        <!-- Row for Temp and EKG -->
+        <tr>
+            <td>E</td>
+            <td>
+                <div class="input-section">
+                    <div style="flex: 1; text-align: center;">
+                        <label><input type="checkbox" class="small-input"> Temp:</label><input type="text" class="small-input" placeholder="">
+                    </div>
+                    <div class="vertical-line"></div>
+                    <div style="flex: 1; text-align: center;">
+                        <label><input type="checkbox" class="small-input"> EKG:</label><input type="text" class="small-input" placeholder=""/>
+                    </div>
+                </div>
+            <td class="priority-red">
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">Temp:</span>
+    <input type="text" class="small-input" placeholder=""><br>
+</td>
+<td class="priority">
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">Temp:</span>
+    <input type="text" class="small-input" placeholder=""><br>
+</td>
+<td>
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">Temp:</span>
+    <input type="text" class="small-input" placeholder="">
+</td>
+<td class="priority">
+    <input type="checkbox" class="small-input"> 
+    <span class="input-label">Temp:</span>
+    <input type="text" class="small-input" placeholder=""><br>
+</td>
+
+        </tr>
+
+       
+
+        <!-- Merged row with Notes and Follow-up columns -->
+        <tr>
+    <td colspan="2">ESS-algorithm:<br>12 suspected stroke</td>
+    <td>
+        <input type="checkbox">Red ESS
+        <br><input type="checkbox">Red Priority
+    </td>
+    <td>
+        <input type="checkbox">Orange ESS
+        <br><input type="checkbox">Orange Priority
+    </td>
+    <td>
+        <input type="checkbox">Yellow ESS
+        <br><input type="checkbox">Yellow Priority
+    </td>
+    <td>
+        <input type="checkbox">Green ESS
+        <br><input type="checkbox">Green Priority
+    </td>
+</tr>
+
+
+
+
+          <!-- Placeholder row -->
+        <tr>
+            <td colspan="2">
+                <div class="input-section">
+                    <!-- Placeholder or content section -->
+                </div>
+            </td>
+            <!-- Added right section with input fields -->
+            <td colspan="4">
+                <div class="input-section">
+                    <div style="flex: 1; text-align: center;">
+                        <label>Additional Info (Green):</label><input type="text" class="small-input" placeholder=""/>
+                    </div>
+                    <div class="vertical-line"></div>
+                    <div style="flex: 1; text-align: center;">
+                        <label>Other:</label><input type="text" class="small-input" placeholder=""/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
