@@ -1,6 +1,8 @@
-import firebase from 'firebase/app';
-import 'firebase/database';
+// Import necessary functions from Firebase SDK
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
 
+// Your Firebase config
 const firebaseConfig = {
   apiKey: 'AIzaSyARa3F2kIya8N9eEoYCqDW6PdVG70-1WXE',
   authDomain: 'netdokproject.firebaseapp.com',
@@ -11,7 +13,11 @@ const firebaseConfig = {
   appId: '1:590796765954:android:e9b4ae259978074b18e01b',
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const database = firebaseApp.database();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-export default database;
+// Get a reference to the database service
+const database = getDatabase(app);
+
+// Export as a named export
+export { database };

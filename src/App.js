@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CallCentrePage from './components/CallCentrePage';
 import AmbulanceDetailsPage from './components/AmbulanceDetailsPage';
 import PatientInformationPage from './components/PatientInformationPage';
+import AmbulanceJournalPage from './components/AmbulanceJournalPage'; // Assuming you have this component
 import Admin from './components/admin'; // Import the Admin component
 
 // Other page components
@@ -44,6 +45,7 @@ function App() {
             <li><Link to="/call-centre">Call Centre</Link></li>
             <li><Link to="/AmbulanceDetails">Ambulance Details</Link></li>
             <li><Link to="/patient-information">Patient Information</Link></li>
+            <li><Link to="/ambulance-journal">Ambulance Journal</Link></li> {/* Added Ambulance Journal */}
             <li><Link to="/admin">Admin</Link></li>
           </ul>
         </nav>
@@ -72,6 +74,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <PatientInformationPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/ambulance-journal" // Route for the Ambulance Journal
+              element={
+                <ProtectedRoute>
+                  <AmbulanceJournalPage /> {/* Ensure you have this component */}
                 </ProtectedRoute>
               }
             />

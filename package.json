@@ -1,18 +1,22 @@
 {
   "name": "ambulance-portal-react",
   "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "This project was bootstrapped with Create React App.",
   "main": "index.js",
   "scripts": {
-    "dev": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "dev": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "firebase": "^11.0.2",
+    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "^3.0.1",
     "web-vitals": "^4.2.4"
   },
   "browserslist": {
